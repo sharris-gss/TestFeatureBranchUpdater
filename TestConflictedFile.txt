@@ -1,6 +1,6 @@
 This is a sample text file
 
-THIS IS THE UPDATED ONE TO GO TO THE MAIN BRANCH
+THIS IS ALSO A CONFLICT AND HOPEFULLY THIS WORKS AS EXPECTED
 
 We have the line to keep constant here
 
