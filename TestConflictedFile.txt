@@ -1,6 +1,6 @@
 This is a sample text file
 
-We have the original line to change here
+THIS IS THE UPDATED ONE TO GO TO THE MAIN BRANCH
 
 We have the line to keep constant here
 
