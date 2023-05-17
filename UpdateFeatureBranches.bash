@@ -20,7 +20,15 @@ do
 		else
 			echo "Updating branch $i with changes from $devBranchName"
 			$(git checkout $i)
-			$(git merge origin/$devBranchName)
+			
+			if $(git merge origin/$devBranchName); then
+				echo "Merge Success"
+			else
+				echo "Merge Failure"
+				$( git reset -hard )
+				$( git clean -fxd )	
+			fi
+
 			$(git push origin $i)
 		fi
 	fi
