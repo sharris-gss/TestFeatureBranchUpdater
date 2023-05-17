@@ -25,7 +25,7 @@ do
 				echo "Merge Success"
 			else
 				echo "Merge Failure"
-				$( git reset -hard )
+				$( git reset --hard )
 				$( git clean -fxd )	
 			fi
 
