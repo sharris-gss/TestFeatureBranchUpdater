@@ -1,5 +1,5 @@
 releaseBranchName="main"
-branchDefiningCommit=""
+branchDefiningCommit="cf07f42"
 
 devBranchName="dev"
 
