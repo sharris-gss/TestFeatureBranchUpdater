@@ -1,6 +1,6 @@
 This is a sample text file
 
-We have the original line to change here
+CONFLICT CONFLICT CONFLICT
 
 We have the line to keep constant here
 
