@@ -1,0 +1,7 @@
+This is a sample text file
+
+We have the original line to change here
+
+We have the line to keep constant here
+
+Here is some more random things
