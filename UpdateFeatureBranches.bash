@@ -24,7 +24,8 @@ do
 
 			echo $?
 
-			if [ $? -eq 0 ]; then
+			if [ $? -eq 0 ]
+			then
 				echo "Merge Success"
 			else
 				echo "Merge Failure"
