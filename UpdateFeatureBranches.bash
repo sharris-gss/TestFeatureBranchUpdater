@@ -33,5 +33,3 @@ do
 		fi
 	fi
 done
-
-echo $output
