@@ -7,7 +7,7 @@ devBranchName="dev"
 ( git merge origin/$releaseBranchName )
 ( git push origin $devBranchName )
 
-branches=( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
+branches=$( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
 branches=( $branches )
 
 for i in "${branches[@]}"
