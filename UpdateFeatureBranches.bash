@@ -3,9 +3,9 @@ branchDefiningCommit="cf07f42"
 
 devBranchName="dev"
 
-( git checkout $devBranchName )
-( git merge origin/$releaseBranchName )
-( git push origin $devBranchName )
+output=$( git checkout $devBranchName )
+output+=$( git merge origin/$releaseBranchName -m "Merge $releaseBranchName into $devBranchName" )
+output+=$( git push origin $devBranchName )
 
 branches=$( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
 branches=( $branches )
@@ -19,17 +19,19 @@ do
 			echo "$i is the development branch, already updated"
 		else
 			echo "Updating branch $i with changes from $devBranchName"
-			( git checkout $i )
-			
-			if (git merge origin/$devBranchName); then
+			output+=$( git checkout $i )
+			output+=$( git merge origin/$devBranchName -m "Merge $devBranchName into $i" )
+			if [ $? -eq 0 ]; then
 				echo "Merge Success"
 			else
 				echo "Merge Failure"
-				( git reset --hard )
-				( git clean -fxd )	
+				output+=$( git reset --hard )
+				output+=$( git clean -fxd )	
 			fi
 
-			( git push origin $i )
+			output+=$( git push origin $i )
 		fi
 	fi
 done
+
+echo $output
