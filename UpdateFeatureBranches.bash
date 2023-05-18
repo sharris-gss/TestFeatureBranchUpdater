@@ -22,9 +22,9 @@ do
 			output+=$( git checkout $i )
 			output+=$( git merge origin/$devBranchName -m "Merge $devBranchName into $i" )
 
-			echo $?
+			statusCode=$?
 
-			if [ $? -eq 0 ]
+			if [ $statusCode -eq 0 ]
 			then
 				echo "Merge Success"
 			else
