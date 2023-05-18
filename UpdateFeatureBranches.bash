@@ -21,7 +21,7 @@ do
 			echo "Updating branch $i with changes from $devBranchName"
 			output=( git checkout $i )
 			
-			if ( git merge origin/$devBranchName -m "Merge $devBranchName into $i" ); then
+			if $( git merge origin/$devBranchName -m "Merge $devBranchName into $i" ); then
 				echo "Merge Success"
 			else
 				echo "Merge Failure"
