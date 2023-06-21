@@ -28,8 +28,10 @@ push_branch () {
 	git push origin $1
 }
 
+echo "Updating development branch"
 update_dev_branch > /dev/null
 
+echo "Getting all related branches"
 get_all_related_branches > /dev/null
 
 for i in "${branches[@]}"
@@ -41,19 +43,16 @@ do
 			echo "$i is the development branch, already updated"
 		else
 			echo "Updating branch $i with changes from $devBranchName"
-
 			checkout_and_update_git_branch "$i" > /dev/null
 
 			if [ $statusCode -eq 0 ]
 			then
 				echo "Merge Success"
+				push_branch "$i" > /dev/null 2>&1
 			else
 				echo "Merge Failure"
-				
-				reset_git_checkout > /dev/null
+				reset_git_checkout > /dev/null 2>&1
 			fi
-
-			push_branch "$i" > /dev/null
 		fi
 	fi
 done
