@@ -1,9 +1,11 @@
 releaseBranchName="main"
 branchDefiningCommit="cf07f42"
-
 devBranchName="dev"
 
-statusCode=0
+get_all_related_branches () {
+	branches=$( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
+	branches=( $branches )
+}
 
 checkout_and_update_git_branch () {
 	git checkout $1
@@ -28,8 +30,7 @@ push_branch () {
 
 update_dev_branch >&-
 
-branches=$( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
-branches=( $branches )
+get_all_related_branches >&-
 
 for i in "${branches[@]}"
 do
