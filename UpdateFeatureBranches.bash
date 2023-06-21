@@ -111,7 +111,7 @@ do
 			echo "$i is the development branch, already updated"
 		else
 			echo "Updating branch $i with changes from $devBranchName"
-			checkout_and_update_git_branch "$i" #> /dev/null 2>&1
+			checkout_and_update_git_branch "$i" > /dev/null 2>&1
 
 			if [ $statusCode -eq 0 ]
 			then
