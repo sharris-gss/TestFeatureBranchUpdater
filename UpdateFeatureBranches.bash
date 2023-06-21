@@ -10,19 +10,19 @@ checkout_and_update_git_branch () {
 }
 
 reset_git_checkout () {
-	${ git reset --hard }
-	${ git clean -fxd }
+	git reset --hard
+	git clean -fxd
 }
 
 update_dev_branch () {
-	${ git checkout $devBranchName }
-	${ git merge origin/$releaseBranchName -m "Merge $releaseBranchName into $devBranchName" }
-	${ git push origin $devBranchName }
+	git checkout $devBranchName
+	git merge origin/$releaseBranchName -m "Merge $releaseBranchName into $devBranchName"
+	git push origin $devBranchName
 }
 
 update_dev_branch
 
-branches=${ git branch --contains $branchDefiningCommit | tr '* ' ' ' }
+branches=$( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
 branches=( $branches )
 
 for i in "${branches[@]}"
@@ -46,7 +46,7 @@ do
 				reset_git_checkout
 			fi
 
-			output+=${ git push origin $i }
+			output+=$( git push origin $i )
 		fi
 	fi
 done
