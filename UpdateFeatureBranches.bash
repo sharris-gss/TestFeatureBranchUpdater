@@ -9,20 +9,20 @@ checkout_and_update_git_branch () {
 	git checkout $1
 	git merge origin/$devBranchName -m "Merge $devBranchName into $1"
 	statusCode="$?"
-}>&2
+}
 
 reset_git_checkout () {
 	git reset --hard
 	git clean -fxd
-}>&2
+}
 
 update_dev_branch () {
 	git checkout $devBranchName
 	git merge origin/$releaseBranchName -m "Merge $releaseBranchName into $devBranchName"
 	git push origin $devBranchName
-}>&2
+}
 
-update_dev_branch
+update_dev_branch >&2
 
 branches=$( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
 branches=( $branches )
@@ -37,7 +37,7 @@ do
 		else
 			echo "Updating branch $i with changes from $devBranchName"
 
-			checkout_and_update_git_branch "$i"
+			checkout_and_update_git_branch "$i" >&2
 
 			if [ $statusCode -eq 0 ]
 			then
@@ -45,7 +45,7 @@ do
 			else
 				echo "Merge Failure"
 				
-				reset_git_checkout
+				reset_git_checkout >&2
 			fi
 
 			output+=$( git push origin $i )
