@@ -6,8 +6,9 @@ devBranchName="dev"
 statusCode=0
 
 checkout_and_update_git_branch () {
-	echo $( git checkout $0 )
-	echo $( git merge origin/$devBranchName -m "Merge $devBranchName into $0" )
+	echo "Branch to checkout: $0"
+	git checkout $0
+	git merge origin/$devBranchName -m "Merge $devBranchName into $0"
 	statusCode="$?"
 	echo "Status Code of Merge: $statusCode"
 }
