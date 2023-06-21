@@ -53,7 +53,7 @@ do
 				reset_git_checkout >&-
 			fi
 
-			push_branch "$i" >&-
+			push_branch "$i" >&- 2>&1
 		fi
 	fi
 done
