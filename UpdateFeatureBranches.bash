@@ -22,7 +22,7 @@ update_dev_branch () {
 	git push origin $devBranchName
 }
 
-update_dev_branch >&2
+update_dev_branch >&-
 
 branches=$( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
 branches=( $branches )
@@ -37,7 +37,7 @@ do
 		else
 			echo "Updating branch $i with changes from $devBranchName"
 
-			checkout_and_update_git_branch "$i" >&2
+			checkout_and_update_git_branch "$i" >&-
 
 			if [ $statusCode -eq 0 ]
 			then
@@ -45,7 +45,7 @@ do
 			else
 				echo "Merge Failure"
 				
-				reset_git_checkout >&2
+				reset_git_checkout >&-
 			fi
 
 			output+=$( git push origin $i )
