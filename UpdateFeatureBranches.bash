@@ -9,6 +9,7 @@ checkout_and_update_git_branch () {
 	git checkout $0
 	git merge origin/$devBranchName -m "Merge $devBranchName into $0"
 	statusCode=$?
+	echo "Status Code of Merge: $statusCode"
 }
 
 reset_git_checkout () {
