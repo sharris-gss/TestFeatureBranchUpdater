@@ -7,6 +7,7 @@ get_all_related_branches () {
 	branches=( $branches )
 }
 
+# checkout_and_update_git_branch (branch_name)
 checkout_and_update_git_branch () {
 	git checkout $1
 	git merge origin/$devBranchName -m "Merge $devBranchName into $1"
@@ -24,6 +25,7 @@ update_dev_branch () {
 	git push origin $devBranchName
 }
 
+# push_branch (branch_name)
 push_branch () {
 	git push origin $1
 }
@@ -37,7 +39,7 @@ get_all_related_branches > /dev/null 2>&1
 for i in "${branches[@]}"
 do
 	echo ""
-	
+
 	if [ "$i" = "$releaseBranchName" ]; then
 		echo "$i is the main branch, nothing to update"
 	else 
