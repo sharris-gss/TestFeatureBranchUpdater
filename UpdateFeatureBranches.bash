@@ -4,8 +4,8 @@ branchDefiningCommit="cf07f42"
 devBranchName="dev"
 
 checkout_and_update_git_branch () {
-	${ git checkout $0 }
-	${ git merge origin/$devBranchName -m "Merge $devBranchName into $0" }
+	git checkout $0
+	git merge origin/$devBranchName -m "Merge $devBranchName into $0"
 	statusCode=$?
 }
 
