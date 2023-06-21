@@ -30,6 +30,21 @@ push_branch () {
 	git push origin $1
 }
 
+# get_gss_email_from_github_name (github_username)
+get_gss_email_from_github_name () {
+	echo "${1%-gss}@gssmail.com"
+}
+
+# email_user (email_address, email_subject, email_message)
+email_user () {
+	echo ""
+}
+
+# email_gss_user_to_resolve_conflicts (github_user, branch_name)
+email_gss_user_to_resolve_conflicts () {
+	echo $( get_gss_email_from_github_name "$1" )
+}
+
 echo "Updating development branch"
 update_dev_branch > /dev/null 2>&1
 
@@ -56,6 +71,9 @@ do
 			else
 				echo "Merge Failure"
 				reset_git_checkout > /dev/null 2>&1
+
+				# Email Associated User
+				email_gss_user_to_resolve_conflicts "sharris-gss" ""
 			fi
 		fi
 	fi
