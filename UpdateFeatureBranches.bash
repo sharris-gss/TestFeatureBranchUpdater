@@ -22,6 +22,10 @@ update_dev_branch () {
 	git push origin $devBranchName
 }
 
+push_branch () {
+	git push origin $1
+}
+
 update_dev_branch >&-
 
 branches=$( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
@@ -48,9 +52,7 @@ do
 				reset_git_checkout >&-
 			fi
 
-			output+=$( git push origin $i )
+			push_branch "$i" >&-
 		fi
 	fi
 done
-
-echo $output
