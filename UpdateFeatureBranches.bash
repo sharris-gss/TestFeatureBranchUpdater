@@ -6,20 +6,20 @@ devBranchName="dev"
 statusCode=0
 
 checkout_and_update_git_branch () {
-	git checkout $1
-	git merge origin/$devBranchName -m "Merge $devBranchName into $1"
+	git checkout $1 | cat
+	git merge origin/$devBranchName -m "Merge $devBranchName into $1" | cat
 	statusCode="$?"
 }
 
 reset_git_checkout () {
-	git reset --hard
-	git clean -fxd
+	git reset --hard | cat
+	git clean -fxd | cat
 }
 
 update_dev_branch () {
-	git checkout $devBranchName
-	git merge origin/$releaseBranchName -m "Merge $releaseBranchName into $devBranchName"
-	git push origin $devBranchName
+	git checkout $devBranchName | cat
+	git merge origin/$releaseBranchName -m "Merge $releaseBranchName into $devBranchName" | cat
+	git push origin $devBranchName | cat
 }
 
 update_dev_branch >&2
