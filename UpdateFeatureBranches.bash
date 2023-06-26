@@ -128,7 +128,6 @@ teams_post_backend () {
 	# Convert formating.
 	MESSAGE=$( echo ${TEXT} | sed 's/"/\"/g' | sed "s/'/\'/g" )
 	JSON="{\"title\": \"$TITLE\", \"themeColor\": \"$COLOR\", \"text\": \"$MESSAGE\" }"
-	echo $JSON
 
 	# Post to Microsoft Teams.
 	curl -X POST -H "Content-Type: application/json" -d "${JSON}" "${WEBHOOK_URL}"
