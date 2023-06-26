@@ -144,6 +144,7 @@ load_webhook_url () {
 	echo "C:/Temp/hidden_values.file"
 
 	webhook=$(cat "$(dirname $(readlink -f $0))/hidden_values.file")
+	
 }
 
 echo "Loading Webhook URL"
