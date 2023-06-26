@@ -103,9 +103,6 @@ load_webhook_url () {
 	webhook=$(cat "$(dirname $(readlink -f $0))/hidden_values.file")
 }
 
-make_teams_post "zorp"
-exit
-
 echo "Getting all related branches"
 branches=$(get_all_branches_to_update_from_issues)
 branches=( $branches )
