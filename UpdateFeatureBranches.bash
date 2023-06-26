@@ -140,7 +140,8 @@ make_teams_post () {
 }
 
 load_webhook_url () {
-	echo "$(dirname $(readlink -f $0))/hidden_values.file"
+	# TODO: This is windows exclusive, figure out what to do for linux
+	echo "C:/Temp/hidden_values.file"
 
 	webhook=$(cat "$(dirname $(readlink -f $0))/hidden_values.file")
 }
