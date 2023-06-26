@@ -1,6 +1,8 @@
 # This is a basic workflow to help you get started with Actions
+env:
+    GH_TOKEN: ${{ github.token }}
 
-name: CI
+name: BranchUpdaterAction
 
 # Controls when the workflow will run
 on:
