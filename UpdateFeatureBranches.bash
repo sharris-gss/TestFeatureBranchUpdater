@@ -135,18 +135,18 @@ teams_post_backend () {
 }
 
 # make_teams_post (branch_name)
-make_teams_post () {
-	load_webhook_url
-	
+make_teams_post () {	
 	teams_post_backend "$webhook" "Automatic Update Failed on branch $1" "0" "Automatic update of branch $1 in the $repository_name repository failed. Resolve any conflicts and then update this branch manually from $releaseBranchName"
 }
 
 load_webhook_url () {
-
 	echo "$(dirname $(readlink -f $0))/hidden_values.file"
 
 	webhook=$(cat "$(dirname $(readlink -f $0))/hidden_values.file")
 }
+
+echo "Loading Webhook URL"
+load_webhook_url
 
 echo "Getting all related branches"
 branches=$(get_all_branches_to_update_from_issues)
