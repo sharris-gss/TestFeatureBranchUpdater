@@ -3,8 +3,8 @@
 repository_name="TestFeatureBranchUpdater"
 releaseBranchName="main"
 branchDefiningCommit="cf07f42"
-webhook="<YOUR WEBHOOK URL HERE>"
 releaseVersion="2023.1"
+webhook=""
 
 get_all_related_branches () {
 	branches=$( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
@@ -90,9 +90,21 @@ email_gss_user_to_resolve_conflicts () {
 
 # make_teams_post (branch_name)
 make_teams_post () {
+	load_webhook_url
+
 	local my_dir="$(dirname $(readlink -f $0))"
 	$my_dir/teams-chat-post.sh "$webhook" "Automatic Update Failed on branch $1" "0" "Automatic update of branch $1 in the $repository_name repository failed. Resolve any conflicts and then update this branch manually from $releaseBranchName"
 }
+
+load_webhook_url () {
+
+	echo "$(dirname $(readlink -f $0))/hidden_values.file"
+
+	webhook=$(cat "$(dirname $(readlink -f $0))/hidden_values.file")
+}
+
+make_teams_post "zorp"
+exit
 
 echo "Getting all related branches"
 branches=$(get_all_branches_to_update_from_issues)
