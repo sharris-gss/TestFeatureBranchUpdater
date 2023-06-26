@@ -88,12 +88,57 @@ email_gss_user_to_resolve_conflicts () {
 	echo ""
 }
 
+# teams_post_backend (webhook_url, title, color, text)
+teams_post_backend () {
+	# Webhook or Token.
+	local WEBHOOK_URL=$1
+	if [[ "${WEBHOOK_URL}" == "" ]]
+	then
+	echo "No webhook_url specified."
+	exit 1
+	fi
+	shift
+
+	# Title .
+	local TITLE=$1
+	if [[ "${TITLE}" == "" ]]
+	then
+	echo "No title specified."
+	exit 1
+	fi
+	shift
+
+	# Color.
+	local COLOR=$1
+	if [[ "${COLOR}" == "" ]]
+	then
+	echo "No status specified."
+	exit 1
+	fi
+	shift
+
+	# Text.
+	local TEXT=$*
+	if [[ "${TEXT}" == "" ]]
+	then
+	echo "No text specified."
+	exit 1
+	fi
+
+	# Convert formating.
+	MESSAGE=$( echo ${TEXT} | sed 's/"/\"/g' | sed "s/'/\'/g" )
+	JSON="{\"title\": \"$TITLE\", \"themeColor\": \"$COLOR\", \"text\": \"$MESSAGE\" }"
+	echo $JSON
+
+	# Post to Microsoft Teams.
+	curl -X POST -H "Content-Type: application/json" -d "${JSON}" "${WEBHOOK_URL}"
+}
+
 # make_teams_post (branch_name)
 make_teams_post () {
 	load_webhook_url
-
-	local my_dir="$(dirname $(readlink -f $0))"
-	$my_dir/teams-chat-post.sh "$webhook" "Automatic Update Failed on branch $1" "0" "Automatic update of branch $1 in the $repository_name repository failed. Resolve any conflicts and then update this branch manually from $releaseBranchName"
+	
+	teams_post_backend "$webhook" "Automatic Update Failed on branch $1" "0" "Automatic update of branch $1 in the $repository_name repository failed. Resolve any conflicts and then update this branch manually from $releaseBranchName"
 }
 
 load_webhook_url () {
