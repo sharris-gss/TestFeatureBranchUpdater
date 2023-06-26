@@ -3,8 +3,8 @@
 repository_name="TestFeatureBranchUpdater"
 releaseBranchName="main"
 branchDefiningCommit="cf07f42"
-releaseVersion="2020.1"
 webhook="<YOUR WEBHOOK URL HERE>"
+releaseVersion="2023.1"
 
 get_all_related_branches () {
 	branches=$( git branch --contains $branchDefiningCommit | tr '* ' ' ' )
