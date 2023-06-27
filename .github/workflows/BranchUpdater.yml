@@ -169,8 +169,7 @@ jobs:
           	teams_post_backend "$webhook" "Automatic Update Failed on branch $1" "0" "Automatic update of branch $1 in the $repository_name repository failed. Resolve any conflicts and then update this branch manually from $releaseBranchName"
           }
           
-          load_webhook_url () {
-          	# TODO: This is windows exclusive, figure out what to do for linux          
+          load_webhook_url () {         
           	webhook=${{ secrets.WEBHOOK_URL }}
           }
           
@@ -203,4 +202,6 @@ jobs:
           		fi
           	fi
           done
+
+          exit 0
           
