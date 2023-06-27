@@ -81,7 +81,7 @@ jobs:
           
           # checkout_and_update_git_branch (branch_name)
           checkout_and_update_git_branch () {
-          	git checkout $1
+          	git switch $1
           	git merge origin/$releaseBranchName -m "Merge $releaseBranchName into $1"
           	statusCode="$?"
           }
