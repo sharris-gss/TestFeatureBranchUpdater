@@ -188,15 +188,15 @@ jobs:
           		echo "$i is the main branch, nothing to update"
           	else 
           		echo "Updating branch $i with changes from $releaseBranchName"
-          		checkout_and_update_git_branch "$i" > /dev/null 2>&1
+          		checkout_and_update_git_branch "$i" #> /dev/null 2>&1
           
           		if [ $statusCode -eq 0 ]
           		then
           			echo "Merge Success"
-          			push_branch "$i" > /dev/null 2>&1
+          			push_branch "$i" #> /dev/null 2>&1
           		else
           			echo "Merge Failure"
-          			reset_git_checkout > /dev/null 2>&1
+          			reset_git_checkout #> /dev/null 2>&1
           			
           			make_teams_post "$i"
           		fi
