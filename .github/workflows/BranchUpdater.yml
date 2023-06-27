@@ -178,9 +178,6 @@ jobs:
           echo
           echo "Github Workspace"
           echo $GITHUB_WORKSPACE
-          echo
-          git status
-          echo
           
           echo "Loading Webhook URL"
           load_webhook_url
@@ -200,6 +197,10 @@ jobs:
           	if [ "$i" = "$releaseBranchName" ]; then
           		echo "$i is the main branch, nothing to update"
           	else 
+                echo
+                git status
+                echo
+
           		echo "Updating branch $i with changes from $releaseBranchName"
           		checkout_and_update_git_branch "$i" #> /dev/null 2>&1
           
