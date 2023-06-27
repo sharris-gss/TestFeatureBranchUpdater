@@ -178,6 +178,9 @@ jobs:
           echo
           echo "Github Workspace"
           echo $GITHUB_WORKSPACE
+          echo
+          git status
+          echo
           
           echo "Loading Webhook URL"
           load_webhook_url
