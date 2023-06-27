@@ -95,7 +95,7 @@ teams_post_backend () {
 	if [[ "${WEBHOOK_URL}" == "" ]]
 	then
 	echo "No webhook_url specified."
-	exit 1
+	return 1
 	fi
 	shift
 
@@ -104,7 +104,7 @@ teams_post_backend () {
 	if [[ "${TITLE}" == "" ]]
 	then
 	echo "No title specified."
-	exit 1
+	return 1
 	fi
 	shift
 
@@ -113,7 +113,7 @@ teams_post_backend () {
 	if [[ "${COLOR}" == "" ]]
 	then
 	echo "No status specified."
-	exit 1
+	return 1
 	fi
 	shift
 
@@ -122,7 +122,7 @@ teams_post_backend () {
 	if [[ "${TEXT}" == "" ]]
 	then
 	echo "No text specified."
-	exit 1
+	return 1
 	fi
 
 	# Convert formating.
