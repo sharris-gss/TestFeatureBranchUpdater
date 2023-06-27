@@ -172,6 +172,12 @@ jobs:
           load_webhook_url () {         
           	webhook=${{ secrets.WEBHOOK_URL }}
           }
+
+          echo "Current Directory"
+          echo $(pwd)
+          echo
+          echo "Github Workspace"
+          echo $GITHUB_WORKSPACE
           
           echo "Loading Webhook URL"
           load_webhook_url
