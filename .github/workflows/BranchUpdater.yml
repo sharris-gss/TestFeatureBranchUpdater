@@ -30,6 +30,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
+          set +e
           repository_name="TestFeatureBranchUpdater"
           releaseBranchName="main"
           branchDefiningCommit="cf07f42"
