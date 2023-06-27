@@ -175,6 +175,9 @@ jobs:
           
           echo "Loading Webhook URL"
           load_webhook_url
+
+          echo "Fetching latest Git changes"
+          git fetch
           
           echo "Getting all related branches"
           branches=$(get_all_branches_to_update_from_issues)
