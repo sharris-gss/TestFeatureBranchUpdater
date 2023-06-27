@@ -181,6 +181,7 @@ jobs:
           
           echo "Getting all related branches"
           branches=$(get_all_branches_to_update_from_issues)
+          echo $branches
           branches=( $branches )
           
           for i in "${branches[@]}"
