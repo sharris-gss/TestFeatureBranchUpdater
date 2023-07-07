@@ -1,5 +1,6 @@
 #!/bin/bash
 
+repositoryUrl="https://github.com/sharris-gss/TestFeatureBranchUpdater.git"
 repository_name="TestFeatureBranchUpdater"
 releaseBranchName="main"
 branchDefiningCommit="cf07f42"
@@ -145,11 +146,61 @@ load_webhook_url () {
 	
 }
 
-echo "Loading Webhook URL"
-load_webhook_url
+# -----------------------------------------------------------------------------------------------------------------------
+# Begin Script
+# -----------------------------------------------------------------------------------------------------------------------
+
+if [ $# -lt 5 ]; then
+	# TODO: Add a more descriptive message and potentially a help page
+	echo "Incorrect # of Arguments"
+	exit 1
+fi
+
+if [ $# -ge 5 ]; then
+	repository_name=$1
+	releaseBranchName=$2
+	branchDefiningCommit=$3
+	releaseVersion=$4
+	repositoryUrl=$5
+fi
+
+# TODO: decide if a fallback teams webhook is something desirable/is a teams webhook required
+if [ $# -ge 6 ]; then
+	webhook=$6
+fi
+
+echo "Repo Name: $repository_name"
+echo "Release Branch: $releaseBranchName"
+echo "Branch Defining Commit: $branchDefiningCommit"
+echo "Release Version: $releaseVersion"
+echo "Repository URL: $repositoryUrl"
+echo "Webhook: $webhook"
+
+# Determine if a directory exists for the current repo and release version
+checkoutDirectory="./$repository_name-$releaseVersion"
+
+if [ -d $checkoutDirectory ]; then
+	# TODO: update this message
+	echo "checkout directory exists, attempt to delete"
+	rm -r -f "./$checkoutDirectory"
+fi
+
+mkdir "./$checkoutDirectory"
+cd "./$checkoutDirectory"
+
+echo $(pwd)
+
+# Setup the local files for the git repo
+git clone $repositoryUrl
+
+echo "Fetching latest Git changes"
+git fetch
 
 echo "Getting all related branches"
 branches=$(get_all_branches_to_update_from_issues)
+
+echo $branches
+
 branches=( $branches )
 
 for i in "${branches[@]}"
