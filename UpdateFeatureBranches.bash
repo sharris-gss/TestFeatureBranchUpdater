@@ -193,6 +193,11 @@ echo $(pwd)
 # Setup the local files for the git repo
 git clone $repositoryUrl
 
+echo $(pwd)
+echo $(ls)
+
+cd "$repository_name"
+
 echo "Fetching latest Git changes"
 git fetch
 
@@ -225,3 +230,5 @@ do
 		fi
 	fi
 done
+
+read -rsn1
