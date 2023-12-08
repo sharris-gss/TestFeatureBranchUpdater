@@ -40,7 +40,7 @@ jobs:
           webhookUrl="https://gssmail.webhook.office.com/webhookb2/9417b749-cee1-45e5-b7f1-692f25c9dbb4@9be26962-4b1b-41b8-92b1-4bfb10ce22cf/IncomingWebhook/352223b2ccab401f961c4e757014101d/ddb00d94-91a5-4216-b1d9-2c4261ae3f21"
           apiKey="eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJhcGlLZXkiLCJnaXRBdXRoVG9rZW4iOiJ0b2tlblZhbHVlIn0.jtnJIjlh22i0R27zRgTUolLS2JSjNjCHiC0AVhbKS26kradbTJqUHVaD_sFd0W0tQLgY84Z12awp89Fw0d4EVg"
 
-          curl gssgit.gss-service.com/api/GitBranchUpdater?repoName=${repositoryName}&releaseBranch=${releaseBranchName}&releaseVersion=${releaseVersion}&repoUrl=${repoUrl}&webhookUrl=${webhookUrl}&apiKey=${apiKey}
+          echo curl gssgit.gss-service.com/api/GitBranchUpdater?repoName=${repositoryName}&releaseBranch=${releaseBranchName}&releaseVersion=${releaseVersion}&repoUrl=${repoUrl}&webhookUrl=${webhookUrl}&apiKey=${apiKey}
 
           exit 0
           
