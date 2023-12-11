@@ -30,14 +30,18 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         env:
+          REPO_NAME: ${{ secrets.REPOSITORY_NAME }}
+          RELEASE_BRANCH: ${{ secrets.RELEASE_23_1_BRANCH }}
+          REPO_URL: ${{ secrets.REPO_URL }}
+          TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
           API_KEY: ${{ secrets.API_KEY }}
         run: |
           set +e
-          repositoryName="TestFeatureBranchUpdater"
-          releaseBranchName="main"
+          repositoryName=$REPO_NAME
+          releaseBranchName=$RELEASE_BRANCH
           releaseVersion="2020.1"
-          repoUrl="https://github.com/sharris-gss/TestFeatureBranchUpdater.git"
-          webhookUrl="https://gssmail.webhook.office.com/webhookb2/9417b749-cee1-45e5-b7f1-692f25c9dbb4@9be26962-4b1b-41b8-92b1-4bfb10ce22cf/IncomingWebhook/352223b2ccab401f961c4e757014101d/ddb00d94-91a5-4216-b1d9-2c4261ae3f21"
+          repoUrl=$REPO_URL
+          webhookUrl=$TEAMS_WEBHOOK
           apiKey=$API_KEY
 
           curl "gssgit.gss-service.com/api/GitBranchUpdater?repoName=${repositoryName}&releaseBranch=${releaseBranchName}&releaseVersion=${releaseVersion}&repoUrl=${repoUrl}&webhookUrl=${webhookUrl}&apiKey=${apiKey}"
